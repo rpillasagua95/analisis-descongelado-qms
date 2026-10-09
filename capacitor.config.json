@@ -1,0 +1,10 @@
+{
+  "appId": "com.example.descongelado",
+  "appName": "Analisis de Descongelado",
+  "webDir": "out",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  }
+}

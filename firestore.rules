@@ -1,0 +1,17 @@
+rules_version = '2';
+
+// Solo usuarios con sesion iniciada Y de un dominio autorizado pueden leer o escribir.
+// Antes bastaba con tener sesion: cualquier cuenta de Google entraba a todos los datos.
+// Cambia "example.com" por el dominio de tu organizacion antes de desplegar.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function autorizado() {
+      return request.auth != null
+        && request.auth.token.email_verified == true
+        && request.auth.token.email.matches('.*@example[.]com$');
+    }
+    match /{document=**} {
+      allow read, write: if autorizado();
+    }
+  }
+}
