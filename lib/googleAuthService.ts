@@ -75,6 +75,14 @@ class GoogleAuthService {
   async initialize() {
     if (typeof window === 'undefined') return;
 
+    // Modo demostracion (NEXT_PUBLIC_DEMO_MODE=1): entra sin cuenta, con un usuario ficticio,
+    // para ver la app con los datos de ejemplo sin configurar Google ni Firebase.
+    if (process.env.NEXT_PUBLIC_DEMO_MODE === '1') {
+      this.user = { id: 'demo', email: 'demo@example.com', name: 'Analista Demo', picture: '' };
+      this.notifyListeners();
+      return;
+    }
+
     try {
       // Cargar Google Identity Services
       await this.loadGoogleScript();

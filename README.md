@@ -4,6 +4,8 @@ App web instalable (PWA) que digitaliza el control de calidad de **producto desc
 
 La desarrollé en 2025 mientras trabajaba como Monitor de Calidad. **Esta es la versión de portafolio:** las fichas técnicas y los clientes son **ficticios** (4 productos de ejemplo, `D0001`–`D0004`), y no incluye datos, configuración, logos ni cuentas de la empresa.
 
+![Elegir el producto y análisis con validaciones al momento](docs/captura.png)
+
 ## Qué hace
 
 - **Varios escenarios de producción**: camarón entero y cola, valor agregado, control de pesos brutos y netos, remuestreo.
@@ -24,6 +26,12 @@ Next.js · React · TypeScript · Tailwind CSS · Firebase Firestore y Auth · G
 npm install
 cp .env.example .env.local   # completa los valores de tu proyecto de Firebase y Google
 npm run dev
+```
+
+Para verla **sin configurar nada** (con los productos ficticios y sin base de datos):
+
+```bash
+NEXT_PUBLIC_DEMO_MODE=1 npm run dev
 ```
 
 ## Seguridad (mejoras de esta versión)

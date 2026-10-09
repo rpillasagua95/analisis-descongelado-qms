@@ -84,6 +84,13 @@ export const useAnalysisSave = ({
         setSaveError(null);
 
         try {
+            // En modo demostracion no hay base de datos: se da por guardado sin enviar nada
+            if (process.env.NEXT_PUBLIC_DEMO_MODE === '1') {
+                setLastSaved(new Date());
+                lastSavedDataRef.current = deterministicStringify(data);
+                if (status === 'COMPLETADO') setIsCompleted(true);
+                return;
+            }
             const { saveAnalysis } = await import('@/lib/analysisService');
             // Remove remuestreoConfig if not present in type
             // or cast to any if we force save it (but Firestore might clean it if cleanDataForFirestore is strict? No, cleanDataForFirestore is generic)
